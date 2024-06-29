@@ -1,0 +1,14 @@
+
+volumes:
+  redis-alone_data:
+
+services:
+  redis-alone:
+    image: redis:7.2-alpine
+    command: ["/app/docker-redis-entrypoint.sh"]
+    container_name: redis-alone
+    ports:
+      - 7000:6379
+    volumes:
+      - redis-alone_data:/data
+      - ./:/app
