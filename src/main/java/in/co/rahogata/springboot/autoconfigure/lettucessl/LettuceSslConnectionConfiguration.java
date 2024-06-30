@@ -9,6 +9,7 @@ import io.lettuce.core.cluster.ClusterClientOptions;
 import io.lettuce.core.cluster.ClusterTopologyRefreshOptions;
 import io.lettuce.core.resource.ClientResources;
 import io.lettuce.core.resource.DefaultClientResources;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -31,6 +32,7 @@ import org.springframework.util.StringUtils;
 
 import java.time.Duration;
 
+@Slf4j
 @AutoConfigureBefore(RedisAutoConfiguration.class)
 @EnableConfigurationProperties(LettuceSslProperties.class)
 @Configuration(proxyBeanMethods = false)
