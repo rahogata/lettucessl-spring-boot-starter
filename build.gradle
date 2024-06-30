@@ -11,6 +11,8 @@ plugins {
     id 'java-library'
     id 'io.freefair.lombok' version '8.6'
     id 'maven-publish'
+    id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
+    id 'signing'
 }
 
 group = 'in.co.rahogata'
@@ -48,10 +50,46 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+            pom {
+                name = project.name
+                description = 'Spring Boot Starter to provide external configuration for Lettuce SslOptions.'
+                url = 'https://github.com/rahogata/lettucessl-spring-boot-starter'
+                licenses {
+                    license {
+                        name = 'Apache-2.0 license'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'rahogata'
+                        name = 'Shivakumar K R'
+                        email = 'shivakumarkr@rahogata.co.in'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:ssh://git@github.com/rahogata/lettucessl-spring-boot-starter.git'
+                    developerConnection = 'scm:git:ssh://git@github.com/rahogata/lettucessl-spring-boot-starter.git'
+                    url = 'https://github.com/rahogata/lettucessl-spring-boot-starter'
+                }
+            }
         }
     }
 }
 
 lombok {
     version = libs.versions.lombok
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl = uri('https://s01.oss.sonatype.org/service/local')
+            snapshotRepositoryUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots')
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
