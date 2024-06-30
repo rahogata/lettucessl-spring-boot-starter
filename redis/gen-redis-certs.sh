@@ -65,4 +65,4 @@ generate_cert client "*" "-extfile tls/openssl.cnf -extensions client_cert"
 [ -f tls/redis.dh ] || openssl dhparam -out tls/redis.dh 2048
 [ -f tls/redis-client.p12 ] || openssl pkcs12 -export -out tls/redis-client.p12 -inkey tls/client.key -in tls/client.crt -passout pass:ramana
 [ -f tls/ca.p12 ] || keytool -importcert -keystore tls/ca.p12 -storetype PKCS12 -alias redisca -file tls/ca.crt -storepass ramana -noprompt
-keytool -importcert -keystore tls/ca.p12 -storetype PKCS12 -alias redisserver -file tls/client.crt -storepass ramana -noprompt
+keytool -importcert -keystore tls/ca.p12 -storetype PKCS12 -alias redisserver -file tls/server.crt -storepass ramana -noprompt

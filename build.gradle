@@ -51,3 +51,7 @@ publishing {
         }
     }
 }
+
+lombok {
+    version = libs.versions.lombok
+}
