@@ -1,5 +1,8 @@
 package in.co.rahogata.springboot.autoconfigure.lettucessl;
 
+/**
+ * Courtesy of {@link org.springframework.boot.autoconfigure.data.redis.RedisUrlSyntaxException}.
+ */
 class LettuceRedisUrlSyntaxException extends RuntimeException{
 
     private final String url;

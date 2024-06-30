@@ -58,7 +58,8 @@ class LibraryTest {
     void redis1() {
         this.contextRunner.withPropertyValues("rahogata.lettuce.ssl.key-store-location=classpath:redis-client.p12",
                 "rahogata.lettuce.ssl.key-store-password=ramana", "rahogata.lettuce.ssl.key-store-type=PKCS12",
-                "rahogata.lettuce.ssl.verifyPeer=false", "spring.redis.host=localhost", "spring.redis.port=7000",
+                "rahogata.lettuce.ssl.verifyPeer=true", "rahogata.lettuce.ssl.trust-store-location=classpath:ca.p12",
+                "rahogata.lettuce.ssl.trust-store-password=ramana", "spring.redis.host=localhost", "spring.redis.port=7000",
                 "spring.redis.ssl=true", "spring.redis.password=hanuma").run(c -> {
             assertNotNull(c.getBean(StringRedisTemplate.class));
             StringRedisTemplate stringRedisTemplate = c.getBean(StringRedisTemplate.class);

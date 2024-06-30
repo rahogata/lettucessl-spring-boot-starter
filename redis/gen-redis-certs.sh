@@ -46,9 +46,13 @@ openssl req \
     -out tls/ca.crt
 
 cat > tls/openssl.cnf <<_END_
+[alt_names]
+DNS.1 = localhost
+IP.1 = 127.0.0.1
 [ server_cert ]
 keyUsage = digitalSignature, keyEncipherment
 nsCertType = server
+subjectAltName = @alt_names
 [ client_cert ]
 keyUsage = digitalSignature, keyEncipherment
 nsCertType = client
@@ -56,6 +60,9 @@ _END_
 
 generate_cert server "*" "-extfile tls/openssl.cnf -extensions server_cert"
 generate_cert client "*" "-extfile tls/openssl.cnf -extensions client_cert"
-generate_cert redis "*"
+#generate_cert redis "*"
 
 [ -f tls/redis.dh ] || openssl dhparam -out tls/redis.dh 2048
+[ -f tls/redis-client.p12 ] || openssl pkcs12 -export -out tls/redis-client.p12 -inkey tls/client.key -in tls/client.crt -passout pass:ramana
+[ -f tls/ca.p12 ] || keytool -importcert -keystore tls/ca.p12 -storetype PKCS12 -alias redisca -file tls/ca.crt -storepass ramana -noprompt
+keytool -importcert -keystore tls/ca.p12 -storetype PKCS12 -alias redisserver -file tls/client.crt -storepass ramana -noprompt

@@ -15,6 +15,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Courtesy of {@link org.springframework.boot.autoconfigure.data.redis.RedisConnectionConfiguration}.
+ */
 class GeneralRedisConnectionConfiguration {
 
     private final RedisProperties properties;

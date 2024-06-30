@@ -32,6 +32,9 @@ import org.springframework.util.StringUtils;
 
 import java.time.Duration;
 
+/**
+ * Courtesy of {@link org.springframework.boot.autoconfigure.data.redis.LettuceConnectionConfiguration}.
+ */
 @Slf4j
 @AutoConfigureBefore(RedisAutoConfiguration.class)
 @EnableConfigurationProperties(LettuceSslProperties.class)

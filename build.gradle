@@ -14,7 +14,7 @@ plugins {
 }
 
 group = 'in.co.rahogata'
-version = '0.1.0'
+version = '0.1.0-SNAPSHOT'
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -36,6 +36,8 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_1_8.getMajorVersion())
     }
+    withJavadocJar()
+    withSourcesJar()
 }
 
 test {
@@ -44,7 +46,7 @@ test {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
         }
     }
