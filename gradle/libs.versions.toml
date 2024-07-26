@@ -10,3 +10,5 @@ lombok = '1.18.34'
 commons-math3 = { module = "org.apache.commons:commons-math3", version.ref = "commons-math3" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 
+[plugins]
+sonarqube = { id = 'org.sonarqube', version = '5.1.0.4882' }

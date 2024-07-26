@@ -13,6 +13,8 @@ plugins {
     id 'maven-publish'
     id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
     id 'signing'
+    alias(libs.plugins.sonarqube)
+    id 'jacoco'
 }
 
 group = 'in.co.rahogata'
@@ -36,7 +38,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
     toolchain {
-        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_1_8.getMajorVersion())
+        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_1_8.majorVersion)
     }
     withJavadocJar()
     withSourcesJar()
@@ -92,4 +94,11 @@ nexusPublishing {
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+		html.required = false
+	}
 }
